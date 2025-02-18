@@ -1,46 +1,46 @@
 # tfmodulegen
 
-Terraformモジュールのボイラープレートファイルを生成するCLIツール **tfmodulegen** です。
+A CLI tool **tfmodulegen** that generates boilerplate files for Terraform modules.
 
-## 概要
+## Overview
 
-`tfmodulegen` は、対話式プロンプトを通じてTerraformモジュールの基本ファイル（`versions.tf`、`main.tf`、`output.tf`、`variable.tf`、`README.md`）を自動生成するツールです。  
-また、JSON形式の設定ファイル（`tfmodulegen.config.json`）を利用することで、Terraformのバージョンやプロバイダーのデフォルト設定を事前に定義し、対話式プロンプトで上書きできるようになっています。
+`tfmodulegen` is a tool that automatically generates basic Terraform module files (`versions.tf`, `main.tf`, `output.tf`, `variable.tf`, `README.md`) through an interactive prompt.  
+Additionally, by using a JSON configuration file (`tfmodulegen.config.json`), you can predefine default settings for Terraform versions and providers, which can be overridden during the interactive prompt.
 
-## 特徴
+## Features
 
-- **対話式プロンプト**  
-  ユーザーからの入力を元に、モジュール名、説明、Terraformバージョン、プロバイダー情報などを設定可能。
+- **Interactive Prompt**  
+  Configure module name, description, Terraform version, and provider information based on user input.
 
-- **ディレクトリ自動生成**  
-  入力されたモジュール名と同じ名前のディレクトリを自動生成し、その中に必要なファイルを出力。
+- **Automatic Directory Generation**  
+  Automatically creates a directory with the same name as the input module name and outputs necessary files.
 
-- **設定ファイルによるデフォルト値の利用**  
-  `tfmodulegen.config.json` を利用して、Terraformバージョンやプロバイダーのデフォルト設定を事前に定義でき、対話式プロンプトでの上書きも可能。
+- **Default Values via Configuration File**  
+  Use `tfmodulegen.config.json` to predefine default settings for Terraform versions and providers, which can be overridden during the interactive prompt.
 
-## 必要条件
+## Requirements
 
-- [Go](https://golang.org/) 1.16以上（推奨）
-- Terraform（※Terraformモジュール作成のための知識が必要）
+- [Go](https://golang.org/) 1.16 or higher (recommended)
+- Terraform (※Knowledge of Terraform module creation is required)
 
-## インストール方法
+## Installation
 
-1. このリポジトリをクローン、またはソースコードを取得してください。
+1. Clone this repository or obtain the source code.
 
-2. ターミナルで以下のコマンドを実行して、バイナリをビルドします。
+2. Run the following command in your terminal to build the binary:
 
    ```bash
    go build -o tfmodulegen main.go
    ```
 
-上記コマンドにより、実行可能な tfmodulegen バイナリが生成されます。
+This command will generate an executable tfmodulegen binary.
 
-## 設定ファイルの利用
+## Using the Configuration File
 
-オプションとして、`tfmodulegen.config.json` という設定ファイルを利用することができます。
-この設定ファイルにより、Terraformのバージョンやプロバイダー情報のデフォルト値が自動で読み込まれ、対話式プロンプトで初期値として表示されます。
+Optionally, you can use a configuration file named `tfmodulegen.config.json`.
+This configuration file automatically loads default values for Terraform versions and provider information, which are displayed as initial values during the interactive prompt.
 
-### 設定ファイルの例
+### Configuration File Example
 
 ```json
 {
@@ -55,22 +55,22 @@ Terraformモジュールのボイラープレートファイルを生成するCL
 }
 ```
 
-ファイルをプロジェクトルートに配置しておくと、ツール起動時に自動的に読み込まれます。
+Place the file in the project root, and it will be automatically loaded when the tool starts.
 
-## 使い方
+## Usage
 
-1. ターミナルで `tfmodulegen` コマンドを実行します。
+1. Run the `tfmodulegen` command in your terminal:
 
 ```bash
 ./tfmodulegen
 ```
 
-2. 対話式プロンプトに従って、モジュール名、説明、Terraformバージョン、プロバイダー情報を入力します。
-3. 入力が完了すると、モジュール名と同じ名前のディレクトリが生成され、その中に必要なファイルが出力されます。
+2. Follow the interactive prompt to input the module name, description, Terraform version, and provider information.
+3. Once input is complete, a directory with the same name as the module will be generated, containing all necessary files.
 
-## 注意事項
+## Cautions
 
-- 上書き注意
+- Overwrite Warning
 
-既に同名のディレクトリが存在する場合、既存のファイルが上書きされる可能性があります。
-必要に応じて、バックアップを取ってから実行してください。
+If a directory with the same name already exists, existing files may be overwritten.
+Please backup as needed before execution.
